@@ -2,11 +2,16 @@ const express = require('express');
 const app = express();
 const port = 8000;
 
+const db = require('./config/mongoose');
+
 const layout = require('express-ejs-layouts');
 
 app.use(express.static('./assets'));
 
 app.use(layout);
+
+app.set('layout extractStyles',true);
+app.set('layout extractScripts',true);
 
 //use express router
 app.use('/',require('./routes'));  
