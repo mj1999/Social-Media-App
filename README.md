@@ -25,12 +25,7 @@ EJS
 MongoDB
 Mongoose
 Express Sessions
-Bcrypt
-Connect Flash
-Multer
-Dotenv
-Helmet
-Express Validator
+
 For a complete list of dependencies with their specific versions, please refer to the package.json file.
 
 ---Contributing
