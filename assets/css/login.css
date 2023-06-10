@@ -1,0 +1,38 @@
+#login-display{
+    display: flex;
+    flex-direction: column;
+    min-height: 500px;
+    /* min-width: 1300px; */
+    height: 70%;
+    background-color: bisque;
+    font-size: 1.2rem;
+    width: 100%;
+}
+
+#form-content{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+#form-content>*{
+    min-width: 400px;
+    width: 25%;
+    display: flex;
+    justify-content: space-between;
+    margin-bottom: 1% ;
+}
+#form-btn{
+    justify-content: center;
+    align-items: center;
+    width: 5vw;
+    height: 3vh;
+    margin-top: 1vh;
+    border-radius: 10px;
+    min-width: 60px;
+    min-height: 30px;
+}
+h1{
+    margin: 2%;
+    padding: 1%;
+}

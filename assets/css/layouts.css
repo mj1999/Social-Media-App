@@ -2,3 +2,6 @@ body{
     margin: 0;
     text-align: center;
 }
+header,footer{
+    min-width: 400px;
+}
