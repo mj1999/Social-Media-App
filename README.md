@@ -1,4 +1,4 @@
-Social Media Project
+------Social Media Project-----
 This repository contains a social media project developed using Node.js and EJS as the view engine. The project aims to create a web application where users can register, log in, post updates, follow other users, and interact with each other through comments and likes.
 
 Table of Contents
