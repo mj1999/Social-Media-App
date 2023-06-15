@@ -2,15 +2,23 @@ const User = require('../models/user_schema');
 
 
 module.exports.profile = function(req,res){
-    res.render('user_profile');
+    res.send('<h1>Please Login First<h1><a href="/auth/sign-in">Login</a>');
 }
 module.exports.friendList = function(req,res){
-    res.end('<h1>My friends </h1>')
+    res.send('<h1>My friends </h1>')
 }
 module.exports.create = function(req,res)
 {
-    User.create(req.body).then((user)=>{console.log('user created--',user)}).catch((err)=>{console.error.bind(console,'Error creating user')});
-    res.redirect('/');
+    let userMail = req.body.email;
+    if(!User.findOne({email:userMail}))
+    {
+        User.create(req.body).then((user)=>{console.log('user created--',user)}).catch((err)=>{console.error.bind(console,'Error creating user')});
+    }
+    else
+    {
+        console.log('user exists');
+        res.send('<h1>User Already present, redirection to login page...</h1><a href="/auth/sign-in">Login</a>')
+    }
 }
 module.exports.login = function(req,res)
 {
