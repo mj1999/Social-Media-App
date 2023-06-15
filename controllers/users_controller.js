@@ -2,7 +2,18 @@ const User = require('../models/user_schema');
 
 
 module.exports.profile = function(req,res){
-    res.send('<h1>Please Login First<h1><a href="/auth/sign-in">Login</a>');
+    User.findById(req.cookies.user_id).then((user)=>{
+        if(user)
+        {
+            res.render('user_profile',{user_name:user.name});
+        }
+        else
+        {
+            res.send('<h1>Please Login First<h1><a href="/auth/sign-in">Login</a>');
+        }
+    });
+    
+    
 }
 module.exports.friendList = function(req,res){
     res.send('<h1>My friends </h1>')
@@ -26,6 +37,7 @@ module.exports.login = function(req,res)
     User.find(credentials).then((credential)=>{
         console.log(credential)
         if(credential[0]){
+            res.cookie('user_id',credential[0]._id.toString());
             res.render('user_profile',{user_name:credential[0].name});
         }
         else{
