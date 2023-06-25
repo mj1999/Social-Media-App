@@ -1,22 +1,30 @@
-<link rel="stylesheet" href="/css/login.css">
+<link rel="stylesheet" href="/css/login.css" />
 <div id="login-display">
-    <h1>
-        Login Page
-    </h1>
-    <form action="/users/login" method="post">   
-        <div id="form-content">
-            <div id="user-id">
-                <label for="user-mail">Enter your registered email address: </label>
-                <input id="user-mail" name="email" required type="email" placeholder="JohnDoe@email.com">
-            </div>
-            <div id="user-pwd">
-                <label for="user-pwd">Enter your password:</label>
-                <input type="password" name="password" required id="user-pwd" placeholder="password">
-            </div>
-            
-            <button type="submit" id="form-btn">Sign-In</button>
-        </div>
-        
-        
-    </form>
+  <h1>Login Page</h1>
+  <form action="/users/create-session" method="post">
+    <div id="form-content">
+      <div id="user-id">
+        <label for="user-mail">Enter your registered email address: </label>
+        <input
+          id="user-mail"
+          name="email"
+          required
+          type="email"
+          placeholder="JohnDoe@email.com"
+        />
+      </div>
+      <div id="user-pwd">
+        <label for="user-pwd">Enter your password:</label>
+        <input
+          type="password"
+          name="password"
+          required
+          id="user-pwd"
+          placeholder="password"
+        />
+      </div>
+
+      <button type="submit" id="form-btn">Sign-In</button>
+    </div>
+  </form>
 </div>
