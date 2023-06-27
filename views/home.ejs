@@ -1,4 +1,15 @@
-
-    <div id="root">
-        <h1>My EJS HOME VIEW</h1>
-    </div>
+<div id="root">
+  <h1>My EJS HOME VIEW</h1>
+</div>
+<section id="feed-posts">
+  <h4>Posts</h4>
+  <form action="/add-post" id="new-post-form" method="post">
+    <textarea
+      name="content"
+      cols="30"
+      rows="3"
+      placeholder="Type here..."
+    ></textarea>
+    <input type="submit" value="Post" />
+  </form>
+</section>

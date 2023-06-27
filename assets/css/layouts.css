@@ -1,7 +1,12 @@
-body{
-    margin: 0;
-    text-align: center;
+body {
+  margin: 0;
+  /* text-align: center; */
+  height: 100vh !important;
 }
-header,footer{
-    min-width: 400px;
+.main {
+  height: 90%;
+}
+header,
+footer {
+  min-width: 400px;
 }

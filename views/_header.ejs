@@ -1,5 +1,8 @@
-<header>
-  <ul>
+<link rel="stylesheet" href="/css/header.css" />
+
+<header id="navBar">
+  <a id="logo" href="/"><img src="/images/logo.png" /></a>
+  <ul class="navBarItems">
     <%if(locals.user){%>
     <li>
       <a href="/users/profile"><%=user.name%></a>

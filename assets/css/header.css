@@ -1,0 +1,29 @@
+#navBar {
+  display: flex;
+  position: static;
+  justify-content: space-between;
+  align-items: center;
+  height: 5vh;
+  padding: 0 2%;
+  background-color: rgb(75, 183, 255);
+}
+#logo {
+  width: 10%;
+  /* background-color: white; */
+}
+#logo img {
+  width: 100%;
+}
+.navBarItems li {
+  list-style: none;
+  display: inline-block;
+  margin-left: 2vw;
+}
+.navBarItems a {
+  color: black;
+  text-decoration: none;
+  font-size: 1.2rem;
+}
+.navBarItems a:hover {
+  color: white;
+}

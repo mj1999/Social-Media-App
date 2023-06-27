@@ -21,6 +21,8 @@
     "express-session": "^1.17.3",
     "mongoose": "^7.2.2",
     "passport": "^0.6.0",
-    "passport-local": "^1.0.0"
+    "passport-local": "^1.0.0",
+    "sass": "^1.63.6",
+    "sass-middleware": "^0.0.3"
   }
 }
