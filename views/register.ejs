@@ -1,25 +1,32 @@
-<link rel="stylesheet" href="/css/login.css">
+<link rel="stylesheet" href="/css/login.css" />
 <div id="login-display">
-    <h1>
-        SignUp Page
-    </h1>
-    <form action="/users/create" method="post">
-        <div id="form-content">
-            <div id="firstname">
-                <label for="user-name">Enter your Name: </label>
-                <input id="user-name" name="name" placeholder="John Doe">
-            </div>
-            <div id="user-id">
-                <label for="user-mail">Enter your email address: </label>
-                <input id="user-mail" name="email" type="email" placeholder="JohnDoe@email.com">
-            </div>
-            <div id="user-pwd">
-                <label for="user-pwd">Set your password:</label>
-                <input type="password" name="password" id="user-pwd" placeholder="password">
-            </div>
-            
-            <button type="submit" id="form-btn">Register</button>
-        </div>
+  <h1>SignUp Page</h1>
+  <form action="/users/create" method="post">
+    <div id="form-content">
+      <div id="firstname">
+        <label for="user-name">Enter your Name: </label>
+        <input id="user-name" name="name" placeholder="John Doe" />
+      </div>
+      <div id="user-id">
+        <label for="user-mail">Enter your email address: </label>
+        <input
+          id="user-mail"
+          name="email"
+          type="email"
+          placeholder="JohnDoe@email.com"
+        />
+      </div>
+      <div id="user-pwd">
+        <label for="user-pwd">Set your password:</label>
+        <input
+          type="password"
+          name="password"
+          id="user-pwd"
+          placeholder="password"
+        />
+      </div>
 
-    </form>
+      <button type="submit" id="form-btn">Register</button>
+    </div>
+  </form>
 </div>

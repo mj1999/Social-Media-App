@@ -1,0 +1,55 @@
+#feed-posts {
+  overflow: auto;
+}
+
+form {
+  display: flex;
+  align-items: center;
+}
+form > * {
+  margin-right: 0.5vw;
+}
+.post-display {
+  /* box-shadow: 0 0 2px grey;
+   */
+  border-bottom: 1px solid grey;
+  margin: 4vh 1vw;
+  padding: 1vw;
+  padding-bottom: 4vh;
+}
+.comment {
+  box-shadow: 0 0 2px grey;
+  margin: 0.5vw;
+  padding: 1vw;
+}
+.post-info {
+  display: flex;
+  justify-content: space-between;
+  padding: 1vw;
+}
+.content {
+  padding: 0 0.5vw;
+  font-size: 1.2rem;
+  font-weight: bolder;
+  color: rgb(49, 49, 49);
+  font-family: sans-serif;
+}
+.comment-content {
+  box-shadow: 0 0 2px grey;
+  min-height: 50px;
+  padding: 0 0.5vw;
+  flex-grow: 7;
+}
+.comment-info {
+  display: flex;
+  justify-content: space-between;
+}
+.delete-btn {
+  color: red;
+  border: 1px solid red;
+  margin-left: 0.5vw;
+}
+.comment-display {
+  display: flex;
+  align-items: center;
+}

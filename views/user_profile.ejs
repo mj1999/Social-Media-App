@@ -1,6 +1,22 @@
 <link rel="stylesheet" href="/css/user_profile.css" />
 <div id="root">
-  <h1>My Profile VIEW</h1>
-  <h2>Welcome User: <b><%= user.name %></b></h2>
-  <h2>Your email : <b><%= user.email %></b></h2>
+  <%if(!User){%>
+  <h1>My Profile:</h1>
+  <br />
+  <h2>User Name: <b><%= locals.user.name %></b></h2>
+  <h2>User email : <b><%= locals.user.email %></b></h2>
+
+  <form action="/users/profile/update" method="post">
+    Enter new name:
+    <input type="text" name="name" required />
+    Enter new email:
+    <input type="text" name="email" required />
+    <button type="submit">Update</button>
+  </form>
+  <%}else{%>
+  <h1><%= User.name %>'s Profile:</h1>
+  <br />
+  <h2>User Name: <b><%= User.name %></b></h2>
+  <h2>User email : <b><%= User.email %></b></h2>
+  <%}%>
 </div>

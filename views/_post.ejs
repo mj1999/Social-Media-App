@@ -1,0 +1,47 @@
+<%if(locals.user){%>
+<section id="feed-posts">
+  <h4>Posts</h4>
+  <form action="/posts/create" id="new-post-form" method="post">
+    <textarea
+      name="content"
+      cols="45"
+      rows="3"
+      placeholder="Type here..."
+      required
+    ></textarea>
+    <input type="submit" value="Post" />
+  </form>
+  <%if(posts){%> <% for(let post of posts.reverse()){ %>
+  <div class="post-display">
+    <div class="content">
+      <p><%= post.content %></p>
+    </div>
+    <div class="post-info">
+      <div class="post-date">
+        <small><%=filterDate(post.createdAt)%></small>
+      </div>
+      <div class="post-user">
+        <small
+          ><b>User:&nbsp;</b>
+          <%if(post.user.id!=locals.user.id){%>
+          <a href="/users/profile/?userID=<%=post.user.id%>"
+            ><%=post.user.name%></a
+          >
+          <%}else{%> <%=post.user.name%> <%}%>
+        </small>
+      </div>
+    </div>
+    <%-include('_comment',{post})-%> <%if(post.user.id==locals.user.id){ %>
+    <form action="/posts/delete">
+      <input type="hidden" name="postID" value="<%= post._id %>" />
+      <input class="delete-btn" type="submit" value="delete" />
+    </form>
+    <%}%>
+  </div>
+
+  <%}%> <%}%>
+</section>
+<%}else{%>
+<h2>Please Sign In</h2>
+<div style="height: 100vh"></div>
+<%}%>

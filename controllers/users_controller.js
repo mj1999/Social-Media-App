@@ -1,17 +1,24 @@
 const User = require("../models/user_schema");
 
 module.exports.profile = function (req, res) {
-  //   User.findById(req.cookies.user_id).then((user) => {
-  //     if (user) {
-  //       res.render("user_profile", { user_name: user.name });
-  //     } else {
-  //       res.send('<h1>Please Login First<h1><a href="/auth/sign-in">Login</a>');
-  //     }
-  //   });
-  res.render("user_profile");
+  if (req.query.userID) {
+    User.findById(req.query.userID)
+      .then((user) => {
+        res.render("user_profile", { User: user });
+      })
+      .catch((err) => {
+        console.log("user profile not found", err);
+      });
+  } else {
+    res.render("user_profile", { User: null });
+  }
 };
 module.exports.friendList = function (req, res) {
   res.send("<h1>My friends </h1>");
+};
+module.exports.update = async function (req, res) {
+  await User.findByIdAndUpdate(req.user.id, req.body);
+  return res.redirect("back");
 };
 module.exports.create = function (req, res) {
   let userMail = req.body.email;
