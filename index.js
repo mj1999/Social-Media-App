@@ -2,19 +2,22 @@ const express = require("express");
 const app = express();
 const port = 8000;
 const passport = require("passport");
+const db = require("./config/mongoose");
+const layout = require("express-ejs-layouts");
 const passportLocal = require("./config/passport-local-strategy");
 const session = require("express-session");
 const cookieParser = require("cookie-parser");
 const MongoStore = require("connect-mongo");
+const flash = require("connect-flash");
+const customMiddleware = require("./config/middleware.js");
 
 app.use(cookieParser());
 app.use(express.urlencoded());
 
-const db = require("./config/mongoose");
-
-const layout = require("express-ejs-layouts");
 //static files
 app.use(express.static("./assets"));
+app.use("/uploads", express.static(__dirname + "/uploads"));
+
 //layout
 app.use(layout);
 app.set("layout extractStyles", true);
@@ -43,6 +46,9 @@ app.use(
 app.use(passport.initialize());
 app.use(passport.session());
 app.use(passport.setAuthUser);
+
+app.use(flash());
+app.use(customMiddleware.setFlash);
 
 //use express router
 app.use("/", require("./routes"));

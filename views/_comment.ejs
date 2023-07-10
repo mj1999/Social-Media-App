@@ -1,6 +1,10 @@
 <div class="comment">
   <div>Comments:</div>
-  <form action="/comments/create" id="new-comment-form" method="post">
+  <form
+    action="/comments/create"
+    id="new-comment-form-post-<%=post.id%>"
+    method="post"
+  >
     <textarea
       required
       name="comment"
@@ -12,38 +16,40 @@
     <input type="submit" value="Comment" />
   </form>
   <br />
-  <%for(let comment of post.comments){%>
-  <div class="comment-display">
-    <div class="comment-content">
-      <p><%= comment.content %></p>
-      <div class="comment-info">
-        <div class="comment-date">
-          <small><%=filterDate(comment.createdAt)%></small>
-        </div>
-        <div class="comment-user">
-          <small
-            ><b>User:&nbsp;</b>
-            <%if(comment.user.id!=locals.user.id){%>
-            <a href="/users/profile/?userID=<%=comment.user.id%>"
-              ><%=comment.user.name%></a
-            >
-            <%}else{%> <%=comment.user.name%> <%}%>
-          </small>
+  <div class="comment-list">
+    <%for(let comment of post.comments){%>
+    <div id="<%=comment.id%>" class="comment-display">
+      <div class="comment-content">
+        <p><%= comment.content %></p>
+        <div class="comment-info">
+          <div class="comment-date">
+            <small><%=filterDate(comment.createdAt)%></small>
+          </div>
+          <div class="comment-user">
+            <small
+              ><b>User:&nbsp;</b>
+              <%if(comment.user.id!=locals.user.id){%>
+              <a href="/users/profile/?userID=<%=comment.user.id%>"
+                ><%=comment.user.name%></a
+              >
+              <%}else{%> <%=comment.user.name%> <%}%>
+            </small>
+          </div>
         </div>
       </div>
-    </div>
-    <%if(post.user.id==locals.user.id || comment.user.id==locals.user.id){ %>
-    <form action="/comments/delete">
-      <input type="hidden" name="commentID" value="<%= comment._id %>" />
-      <button class="delete-btn" type="submit">
-        <i class="fa-solid fa-trash"></i>
-      </button>
-    </form>
-    <%}else{%>
-    <div>
-      &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+      <%if(post.user.id==locals.user.id || comment.user.id==locals.user.id){ %>
+      <form class="delete-comment" method="post" action="/comments/delete">
+        <input type="hidden" name="commentID" value="<%= comment._id %>" />
+        <button class="delete-btn" type="submit">
+          <i class="fa-solid fa-trash"></i>
+        </button>
+      </form>
+      <%}else{%>
+      <div>
+        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+      </div>
+      <%}%>
     </div>
     <%}%>
   </div>
-  <%}%>
 </div>

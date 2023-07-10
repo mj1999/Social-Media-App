@@ -2,6 +2,7 @@ const Posts = require("../models/post");
 
 module.exports.home = function (req, res) {
   Posts.find({})
+    .sort("-createdAt")
     .populate("user")
     .populate({
       path: "comments",

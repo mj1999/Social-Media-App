@@ -3,19 +3,33 @@
   <%if(!User){%>
   <h1>My Profile:</h1>
   <br />
+  <img
+    src="<%=locals.user.avatar%>"
+    alt="user-img"
+    height="200px"
+    width="100px"
+  />
   <h2>User Name: <b><%= locals.user.name %></b></h2>
   <h2>User email : <b><%= locals.user.email %></b></h2>
 
-  <form action="/users/profile/update" method="post">
+  <form
+    action="/users/profile/update/<%=user._id%>"
+    enctype="multipart/form-data"
+    method="post"
+  >
     Enter new name:
-    <input type="text" name="name" required />
+    <input type="text" name="name" required /><br />
     Enter new email:
-    <input type="text" name="email" required />
+    <input type="text" name="email" required /><br />
+    Upload Avatar:
+    <input type="file" name="avatar" placeholder="profile-picture" /><br />
     <button type="submit">Update</button>
   </form>
   <%}else{%>
+
   <h1><%= User.name %>'s Profile:</h1>
   <br />
+  <img src="<%=User.avatar%>" alt="user-img" height="200px" width="100px" />
   <h2>User Name: <b><%= User.name %></b></h2>
   <h2>User email : <b><%= User.email %></b></h2>
   <%}%>
