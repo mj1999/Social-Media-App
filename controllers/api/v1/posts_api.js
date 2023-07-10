@@ -21,12 +21,17 @@ module.exports.delete = async function (req, res) {
   try {
     // console.log(req.params.postID);
     let post = await Posts.findById(req.params.postID);
-    console.log(post);
-    post.deleteOne();
-    await Comment.deleteMany({ post: req.params.postID });
-    return res.status(200).json({
-      message: "Post and associated comments delted",
-    });
+    if (post.user == req.user.id) {
+      post.deleteOne();
+      await Comment.deleteMany({ post: req.params.postID });
+      return res.status(200).json({
+        message: "Post and associated comments delted",
+      });
+    } else {
+      return res.status(401).json({
+        message: "You cannot delete this post!",
+      });
+    }
   } catch (err) {
     console.log("error deleting post:,", err);
     return res.status(500).json({
