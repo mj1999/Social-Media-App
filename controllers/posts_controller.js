@@ -1,5 +1,6 @@
 const Post = require("../models/post");
 const Comment = require("../models/comment");
+const Likes = require("../models/like");
 module.exports.createPost = async function (req, res) {
   try {
     let post = await Post.create({
@@ -7,7 +8,7 @@ module.exports.createPost = async function (req, res) {
       user: req.user._id,
     });
     if (req.xhr) {
-      post = await post.populate('user','name');
+      post = await post.populate("user", "name");
       return res.status(200).json({
         data: {
           post,
@@ -21,13 +22,12 @@ module.exports.createPost = async function (req, res) {
 };
 module.exports.delete = async function (req, res) {
   try {
-    console.log(req.body.postID);
     let post = await Post.findById(req.body.postID);
-    console.log(post);
     if (post.user == req.user.id) {
       post.deleteOne();
       try {
-        await Comment.deleteMany({ post: req.query.postID });
+        await Comment.deleteMany({ post: req.body.postID });
+        await Likes.deleteMany({ likeable: req.body.postID });
       } catch (err) {
         console.log("error deleting comments:,", err);
       }

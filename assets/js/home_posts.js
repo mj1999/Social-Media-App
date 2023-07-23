@@ -13,6 +13,7 @@
           $("#posts-list").prepend(newPost);
           deletePost($(" .delete-post", newPost));
           createComment(newPost);
+          toggleLike($(" .like-form", newPost));
           notification("success", "Post Created!");
         },
         error: function (err) {
@@ -44,6 +45,16 @@
                     ${post.user.name}
                     </small>
                 </div>
+            </div>
+            <div class="likes">
+              <form class="like-form">
+                <input type="hidden" name="type" value="Post" />
+                <input type="hidden" name="id" value="${post._id}" />
+                <button class="like-button" type="submit">
+                  <i class="fa-solid fa-heart"></i>
+                </button>
+              </form>
+              <div><span class="num-likes">0</span> likes</div>
             </div>
             <div class="comment">
                 <div>Comments:</div>
@@ -162,6 +173,36 @@
     });
   };
 
+  let toggleLike = function (likeForm) {
+    console.log(likeForm);
+    likeForm.submit(function (e) {
+      e.preventDefault();
+      $.ajax({
+        type: "post",
+        url: "/likes/toggle",
+        data: likeForm.serialize(),
+        success: function (data) {
+          if (data.data.deleted) {
+            console.log(data);
+            $(" + div > .num-likes", likeForm).text(
+              $(" + div > .num-likes", likeForm).text() - 1
+            );
+            $(" .like-button i", likeForm).removeClass("liked");
+          } else {
+            console.log(data);
+            $(" + div > .num-likes", likeForm).text(
+              parseInt($(" + div > .num-likes", likeForm).text()) + 1
+            );
+            $(" .like-button i", likeForm).addClass("liked");
+          }
+        },
+        error: function (err) {
+          console.log("error while liking post", err);
+        },
+      });
+    });
+  };
+
   for (let el of $(".delete-post")) {
     deletePost($(el));
   }
@@ -170,6 +211,9 @@
   }
   for (let el of $(".delete-comment")) {
     deleteComment($(el));
+  }
+  for (let el of $(".like-form")) {
+    toggleLike($(el));
   }
 
   const notification = function (type, message) {

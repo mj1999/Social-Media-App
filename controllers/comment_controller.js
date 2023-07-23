@@ -1,5 +1,6 @@
 const Comment = require("../models/comment");
 const Post = require("../models/post");
+const Likes = require("../models/like");
 const mongoose = require("mongoose");
 module.exports.createComment = async function (req, res) {
   try {
@@ -57,6 +58,7 @@ module.exports.delete = async function (req, res) {
         await Post.findByIdAndUpdate(comment.post.id, {
           $pull: { comments: req.query.commentID },
         });
+        await Likes.deleteMany({ likeable: req.body.commentID });
       }
       res.status(200).json({
         data: { comment },

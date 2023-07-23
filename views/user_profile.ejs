@@ -32,5 +32,12 @@
   <img src="<%=User.avatar%>" alt="user-img" height="200px" width="100px" />
   <h2>User Name: <b><%= User.name %></b></h2>
   <h2>User email : <b><%= User.email %></b></h2>
+  <form id="friendship-form">
+    <input type="hidden" name="fromUser" value="<%=user._id%>" />
+    <input type="hidden" name="toUser" value="<%=User._id%>" />
+    <button type="submit">Add-friend</button>
+  </form>
   <%}%>
 </div>
+
+<script src="/js/user_profile.js"></script>

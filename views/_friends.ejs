@@ -1,1 +1,10 @@
-<section id="friends"></section>
+<h1 class="text-center">Friends</h1>
+<%if(friends.length>0){%>
+<ol id="friends-list">
+  <%for(let friend of friends){%>
+  <li><%=friend.name%></li>
+  <%}%>
+</ol>
+<%}else{%>
+<h3 style="margin-left: 1vw">No friends added</h3>
+<%}%>

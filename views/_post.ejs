@@ -1,4 +1,6 @@
-<%if(posts){%> <% for(let post of posts){ %>
+<%if(posts){%> <% for(let post of posts){ %> <% let liked = false %> <% for(let
+like of post.likes){ %> <% if(like.user == locals.user.id){%> <% liked = true;%>
+<%}%> <%}%>
 <div id="post-<%=post.id%>" class="post-display">
   <div class="content">
     <p><%= post.content %></p>
@@ -17,6 +19,16 @@
         <%}else{%> <%=post.user.name%> <%}%>
       </small>
     </div>
+  </div>
+  <div class="likes">
+    <form class="like-form">
+      <input type="hidden" name="type" value="Post" />
+      <input type="hidden" name="id" value="<%= post._id %>" />
+      <button class="like-button" type="submit">
+        <i class="fa-solid fa-heart <%= liked?'liked':'' %>"></i>
+      </button>
+    </form>
+    <div><span class="num-likes"><%= post.likes.length %></span> likes</div>
   </div>
   <%-include('_comment',{post})-%> <%if(post.user.id==locals.user.id){ %>
   <form class="delete-post" action="/posts/delete" method="post">

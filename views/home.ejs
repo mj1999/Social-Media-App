@@ -4,24 +4,29 @@
   crossorigin="anonymous"
 ></script>
 <h1>My EJS HOME VIEW</h1>
-<%if(locals.user){%>
-<section id="feed-posts">
-  <h4>Posts</h4>
-  <form action="/posts/create" id="new-post-form" method="post">
-    <textarea
-      name="content"
-      cols="45"
-      rows="3"
-      placeholder="Type here..."
-      required
-    ></textarea>
-    <input type="submit" value="Post" />
-  </form>
-  <div id="posts-list"><%-include('_post')-%></div>
-</section>
-<%}else{%>
-<h2>Please Sign In</h2>
-<div style="height: 100vh"></div>
-<%}%>
-
+<div id="root">
+  <%if(locals.user){%>
+  <section id="feed-posts">
+    <h4>Posts</h4>
+    <form action="/posts/create" id="new-post-form" method="post">
+      <textarea
+        name="content"
+        cols="45"
+        rows="3"
+        placeholder="Type here..."
+        required
+      ></textarea>
+      <input type="submit" value="Post" />
+    </form>
+    <div id="posts-list"><%-include('_post')%></div>
+  </section>
+  <section id="friends-users">
+    <div id="friends"><%-include('_friends')%></div>
+    <div id="users"><%-include('_users')%></div>
+  </section>
+  <%}else{%>
+  <h2>Please Sign In</h2>
+  <div style="height: 100vh"></div>
+  <%}%>
+</div>
 <script src="/js/home_posts.js"></script>

@@ -1,7 +1,29 @@
-#feed-posts {
-  overflow: auto;
+.text-center {
+  text-align: center;
 }
-
+#root {
+  display: flex;
+  padding: 2vh;
+}
+#feed-posts {
+  width: 80%;
+}
+#friends-users {
+  width: 20%;
+  height: 90vh;
+  display: flex;
+  flex-direction: column;
+  position: fixed;
+  right: 1vw;
+  bottom: 1vh;
+}
+#friends-users > * {
+  height: 50%;
+  border: 1px solid black;
+  overflow: auto;
+  margin-bottom: 2vh;
+  background-color: rgb(75, 183, 255);
+}
 form {
   display: flex;
   align-items: center;
@@ -22,10 +44,14 @@ form > * {
   margin: 0.5vw;
   padding: 1vw;
 }
-.post-info {
+.post-info,
+.likes {
   display: flex;
   justify-content: space-between;
-  padding: 1vw;
+  padding: 0 1vw;
+}
+.liked {
+  color: red;
 }
 .content {
   padding: 0 0.5vw;

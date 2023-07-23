@@ -50,9 +50,11 @@ module.exports.update = async function (req, res) {
     res.redirect("back");
   }
 };
-module.exports.create = function (req, res) {
+module.exports.create = async function (req, res) {
   let userMail = req.body.email;
-  if (!User.findOne({ email: userMail })) {
+  console.log(userMail);
+  let user = await User.findOne({ email: userMail });
+  if (!user) {
     User.create(req.body)
       .then((user) => {
         console.log("user created--", user);
@@ -60,6 +62,8 @@ module.exports.create = function (req, res) {
       .catch((err) => {
         console.error.bind(console, "Error creating user");
       });
+    req.flash("success", "User created successfully");
+    res.redirect("/auth/sign-in");
   } else {
     console.log("user exists");
     res.send(
